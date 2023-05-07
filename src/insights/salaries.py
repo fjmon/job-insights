@@ -34,6 +34,19 @@ def get_max_salary(path: str) -> int:
 
 
 def get_min_salary(path: str) -> int:
+    with open(path) as file:
+        content = csv.DictReader(file)
+        list = [data for data in content]
+
+        salaries = [salary['min_salary']
+                    for salary
+                    in list]
+
+    list_digit = [int(salary)
+                  for salary
+                  in salaries
+                  if salary.isdigit()]
+    return min(list_digit)
     """Get the minimum salary of all jobs
 
     Must call `read`
