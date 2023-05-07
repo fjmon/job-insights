@@ -104,7 +104,15 @@ def filter_by_salary_range(
     jobs: List[dict],
     salary: Union[str, int]
 ) -> List[Dict]:
-    return [job for job in jobs if matches_salary_range(job, salary)]
+    return [job for job in jobs if is_salary_range_matched(job, salary)]
+
+
+def is_salary_range_matched(job, salary):
+    try:
+        return matches_salary_range(job, salary)
+    except ValueError:
+        return False
+#    return [job for job in jobs if matches_salary_range(job, salary)]
 
     """Filters a list of jobs by salary range
 
