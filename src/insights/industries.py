@@ -1,7 +1,22 @@
 from typing import List, Dict
+import csv
 
 
 def get_unique_industries(path: str) -> List[str]:
+    with open(path) as file:
+        content = csv.DictReader(file)
+        list = [data for data in content]
+
+        list_industries_types = [industry['industry'] 
+                                 for industry in list]
+
+    list_industries_unic_types = [industrie
+                                  for industrie
+                                  in list_industries_types
+                                  if industrie != '']
+
+    return set(list_industries_unic_types)
+
     """Checks all different industries and returns a list of them
 
     Must call `read`
