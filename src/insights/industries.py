@@ -7,7 +7,7 @@ def get_unique_industries(path: str) -> List[str]:
         content = csv.DictReader(file)
         list = [data for data in content]
 
-        list_industries_types = [industry['industry'] 
+        list_industries_types = [industry['industry']
                                  for industry in list]
 
     list_industries_unic_types = [industrie

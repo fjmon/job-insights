@@ -1,7 +1,21 @@
 from typing import Union, List, Dict
+import csv
 
 
 def get_max_salary(path: str) -> int:
+    with open(path) as file:
+        content = csv.DictReader(file)
+        list = [data for data in content]
+
+        salaries = [salary['max_salary']
+                    for salary
+                    in list]
+
+    list_digit = [int(salary)
+                  for salary
+                  in salaries
+                  if salary.isdigit()]
+    return max(list_digit)
     """Get the maximum salary of all jobs
 
     Must call `read`
