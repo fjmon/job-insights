@@ -65,6 +65,16 @@ def get_min_salary(path: str) -> int:
 
 
 def matches_salary_range(job: Dict, salary: Union[int, str]) -> bool:
+    try:
+        min_salary = abs(int(job['min_salary']))
+        max_salary = abs(int(job['max_salary']))
+        if max_salary < min_salary or not str(abs(int(salary))).isdecimal():
+            raise ValueError()
+
+        return min_salary <= int(salary) <= max_salary
+
+    except (KeyError, ValueError, TypeError):
+        raise ValueError()
     """Checks if a given salary is in the salary range of a given job
 
     Parameters
